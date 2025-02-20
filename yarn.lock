@@ -4229,7 +4229,7 @@ expo-localization@~16.0.1:
   dependencies:
     rtl-detect "^1.0.2"
 
-expo-modules-autolinking@2.0.7, expo-modules-autolinking@~2.0.0:
+expo-modules-autolinking@2.0.7:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/expo-modules-autolinking/-/expo-modules-autolinking-2.0.7.tgz#fc40ba7505f42f971253ea20a927693f2c123a56"
   integrity sha512-rkGc6a/90AC3q8wSy4V+iIpq6Fd0KXmQICKrvfmSWwrMgJmLfwP4QTrvLYPYOOMjFwNJcTaohcH8vzW/wYKrMg==

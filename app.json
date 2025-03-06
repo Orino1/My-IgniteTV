@@ -72,11 +72,17 @@
         }
       ],
       "expo-font",
-      "expo-localization"
+      "expo-localization",
+      "expo-video"
     ],
     "newArchEnabled": true,
     "experiments": {
       "tsconfigPaths": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2bf03738-cfa3-4565-8744-f122c6ea2860"
+      }
     }
   },
   "ignite": {

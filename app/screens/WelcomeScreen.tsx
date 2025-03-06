@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite"
 import React, { FC } from "react"
-import { Image, ImageStyle, TextStyle, View, ViewStyle } from "react-native"
+import { Image, ImageStyle, TextStyle, View, ViewStyle, StyleSheet } from "react-native"
 import { Button, Text } from "app/components"
 import { isRTL } from "../i18n"
 import { useStores } from "../models"
@@ -8,6 +8,7 @@ import { AppStackScreenProps } from "../navigators"
 import { colors, spacing } from "../theme"
 import { useHeader } from "../utils/useHeader"
 import { useSafeAreaInsetsStyle } from "../utils/useSafeAreaInsetsStyle"
+import { Card } from "app/components"
 
 const welcomeLogo = require("../../assets/images/logo.png")
 const welcomeFace = require("../../assets/images/welcome-face.png")
@@ -21,7 +22,7 @@ export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeSc
   } = useStores()
 
   function goNext() {
-    navigation.navigate("Demo", { screen: "DemoShowroom", params: {} })
+    navigation.navigate("Media")
   }
 
   useHeader(
@@ -47,10 +48,24 @@ export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeSc
         <Text tx="welcomeScreen.exciting" preset="subheading" />
         <Image style={$welcomeFace} source={welcomeFace} resizeMode="contain" />
       </View>
-
+      <Card
+  heading="Card Title"
+  content="This is some content for the card."
+  footer="Footer text here"
+  verticalAlignment="center"
+  onPress={() => console.log("Card clicked!")}
+  //LeftComponent={<Icon name="star" />}
+  RightComponent={      <Button
+    text="Click Me"                 // Text on the button
+    style={styles.button}           // Style for the button container
+    textStyle={styles.buttonText}   // Style for the text inside the button
+    pressedStyle={styles.pressed}   // Style for the button when pressed
+    pressedTextStyle={styles.pressedText}  // Style for the text when pressed
+  />}
+  style={{ marginBottom: 20 }}
+/>
       <View style={[$bottomContainer, $bottomContainerInsets]}>
         <Text tx="welcomeScreen.postscript" size="md" />
-
         <Button
           testID="next-screen-button"
           preset="reversed"
@@ -103,3 +118,31 @@ const $welcomeFace: ImageStyle = {
 const $welcomeHeading: TextStyle = {
   marginBottom: spacing.md,
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    backgroundColor: "black", // Button background color
+    paddingVertical: 12,         // Vertical padding
+    paddingHorizontal: 24,       // Horizontal padding
+    borderRadius: 8,             // Border radius for rounded corners
+    borderWidth: 2,              // Border width
+    borderColor: "#0056b3",      // Border color
+  },
+  buttonText: {
+    color: "#fff",              // White text color
+    fontSize: 14,                // Font size
+    fontWeight: "normal",          // Bold text
+  },
+  pressed: {
+    backgroundColor: "#0056b3", // Darker blue when pressed
+  },
+  pressedText: {
+    color: "#f0f0f0",            // Light text color when pressed
+  },
+})

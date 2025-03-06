@@ -1,4 +1,9 @@
+export * from "./MediaScreen"
+export * from "./MediaSliderScreen"
 export * from "./WelcomeScreen"
+export * from "./WelcomeScreen2"
+
+
 
 export * from "./LoginScreen"
 export * from "./DemoCommunityScreen"

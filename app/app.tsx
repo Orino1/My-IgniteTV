@@ -30,6 +30,10 @@ import { customFontsToLoad } from "./theme"
 import Config from "./config"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
 import { ViewStyle } from "react-native"
+import NetContextProvider from "./context/NetworkAvailability"
+import StoragePermissionContextProvider from "./context/StoragePermissionContext"
+import LocalMediaContextProvider from "./context/LocalMediaContext"
+import OnlineMediaContextProvider from "./context/OnlineMediaContext"
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 
@@ -41,6 +45,8 @@ const config = {
       path: "",
     },
     Welcome: "welcome",
+    Media: "Media",
+    MediaSlider: "MediaSlider",
     Demo: {
       screens: {
         DemoShowroom: {
@@ -107,11 +113,19 @@ function App(props: AppProps) {
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <ErrorBoundary catchErrors={Config.catchErrors}>
         <GestureHandlerRootView style={$container}>
-          <AppNavigator
-            linking={linking}
-            initialState={initialNavigationState}
-            onStateChange={onNavigationStateChange}
-          />
+          <StoragePermissionContextProvider>
+            <NetContextProvider>
+              <LocalMediaContextProvider>
+                <OnlineMediaContextProvider>
+                  <AppNavigator
+                    linking={linking}
+                    initialState={initialNavigationState}
+                    onStateChange={onNavigationStateChange}
+                  />
+                </OnlineMediaContextProvider>
+              </LocalMediaContextProvider>
+            </NetContextProvider>
+          </StoragePermissionContextProvider>
         </GestureHandlerRootView>
       </ErrorBoundary>
     </SafeAreaProvider>
